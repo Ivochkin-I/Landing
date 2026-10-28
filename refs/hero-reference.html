@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0F1218">
+<title>Ivan Ivochkin — Brand identity, brought into focus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:SHRP,wght@0..100,300..600&family=Onest:wght@400;500&display=swap">
+<style>
+/* TOKENS */
+:root{--bg:#0F1218;--bone:#F1EFE7;--mist:#A9AEC9;--line:#6E74A6;--red:#FF4A1C;--blue:#2B3BFF;--f:0}
+html,body{margin:0;background:var(--bg);color:var(--bone);color-scheme:dark}
+body{font:400 16px/1.5 Onest,system-ui,sans-serif}
+a,button{color:inherit;font:inherit;text-decoration:none}
+button{background:none;border:0;padding:0;cursor:pointer}
+/* LAYOUT */
+.hero{box-sizing:border-box;padding:0 clamp(16px,5vw,80px);background:radial-gradient(ellipse 60% 50% at 0 100%,rgba(43,59,255,.24),transparent 70%),var(--bg)}
+.wrap{max-width:1280px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+.bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 24px;padding:20px 0}
+.brand{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.name{font-weight:500;min-height:44px;display:inline-flex;align-items:center}
+.slogan{font-style:italic;color:var(--mist)}
+.nav{display:flex;align-items:center;gap:20px;flex-wrap:wrap;font-size:.9375rem}
+.st{display:inline-flex;align-items:center;gap:8px;color:var(--mist)}
+.st i{width:8px;height:8px;border-radius:50%;background:#22D3EE}
+.grid{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,4vw,64px);align-items:center;padding:16px 0 40px}
+/* DISC FRAME: dashed perimeter + crosses + gradient, contained */
+.frame{position:relative;width:100%;max-width:560px;aspect-ratio:1;justify-self:center;box-sizing:border-box;border:1px dashed var(--line);display:grid;place-items:center;background:linear-gradient(160deg,rgba(43,59,255,.16),transparent 60%)}
+.x{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(6,1fr);place-items:center;color:var(--line);font-size:20px;line-height:1;font-weight:300}
+.disc{position:relative;width:78%;aspect-ratio:1}
+.disc>*{position:absolute;inset:0;border-radius:50%}
+.rr{border:2px solid var(--red);transform:translateX(-5%)}
+.rb{border:2px solid var(--blue);transform:translateX(5%)}
+.cd{background:conic-gradient(from 40deg,rgba(255,255,255,0) 0 8%,rgba(255,255,255,.4) 14%,rgba(255,255,255,0) 22% 58%,rgba(255,255,255,.28) 66%,rgba(255,255,255,0) 74%),repeating-radial-gradient(circle,rgba(15,18,24,0) 0 3px,rgba(15,18,24,.16) 4px 4px),conic-gradient(from 0deg,#2B3BFF,#22D3EE,#FFB31A,#FF4A1C,#FF2FB9,#6B2BFF,#2B3BFF)}
+.hub{inset:37%;background:var(--bg);box-shadow:0 0 0 6px var(--line),0 0 0 14px rgba(255,47,185,.55)}
+.hole{inset:45%;border:2px solid rgba(241,239,231,.5)}
+/* H1: three lines converge as --f grows (0 = split, 1 = focus). No blur. */
+h1{margin:0;font:400 clamp(2.25rem,4.6vw,4.25rem)/1.06 Geologica,Onest,sans-serif;font-variation-settings:"SHRP" 100;letter-spacing:-.01em;padding-left:.2em}
+h1 span{display:block;--k:calc(1 - var(--f)*.85)}
+.l1{text-shadow:calc(-.065em*var(--k)) 0 0 var(--red),calc(.065em*var(--k)) 0 0 var(--blue),calc(-.13em*var(--k)) 0 0 rgba(255,74,28,.45),calc(-.195em*var(--k)) 0 0 rgba(255,74,28,.2)}
+.l2{text-shadow:calc(-.035em*var(--k)) 0 0 var(--red),calc(.035em*var(--k)) 0 0 var(--blue),calc(-.07em*var(--k)) 0 0 rgba(255,74,28,.3)}
+.l3{text-shadow:calc(-.012em*var(--k)) 0 0 var(--red),calc(.012em*var(--k)) 0 0 var(--blue)}
+.sub{margin:28px 0 0;max-width:34em;font-size:1.125rem;line-height:1.55;color:var(--mist)}
+/* TAB-FOLDER LABEL: line ends square at container edge */
+.tab{display:flex;align-items:flex-end;margin-top:32px}
+.tab span{padding:8px 18px;border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;color:var(--mist);font-size:.875rem;font-style:italic}
+.tab b{flex:1;border-bottom:1px solid var(--line)}
+dl{margin:0;padding:14px 0 0;display:grid;grid-template-columns:130px 1fr;row-gap:10px;font-size:.9375rem}
+dt{color:var(--mist)}dd{margin:0}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+/* BUTTONS */
+.btn{min-height:44px;display:inline-flex;align-items:center;padding:0 18px;border-radius:6px}
+.btn--line{border:1px solid var(--line)}
+.btn--solid{min-height:48px;padding:0 26px;background:var(--bone);color:var(--bg);font-weight:500}
+.btn--ghost{min-height:48px;padding:0 26px;border:1px solid var(--bone)}
+.lang{min-width:44px;min-height:44px;color:var(--mist)}
+.lang[aria-pressed=true]{color:var(--bone)}
+/* GLITCH: hover / focus-visible / click. Hard steps, no blur, base text stays clean. */
+.gl span{display:inline-block}
+@keyframes jit{33%{transform:translate(-2px,0)}66%{transform:translate(2px,1px)}100%{transform:none}}
+@keyframes slice{0%{clip-path:inset(0 0 60% 0);transform:translateX(-4px)}50%{clip-path:inset(55% 0 0 0);transform:translateX(4px)}100%{clip-path:inset(0);transform:none}}
+@media(hover:hover){
+.gl:hover{box-shadow:-3px 0 0 var(--red),3px 0 0 var(--blue)}
+.gl:hover span{text-shadow:-.04em 0 0 var(--red),.04em 0 0 var(--blue);animation:jit .25s steps(3) 1}}
+.gl:focus-visible{outline:2px solid var(--bone);outline-offset:4px;box-shadow:-3px 0 0 var(--red),3px 0 0 var(--blue)}
+.gl:active span{text-shadow:-.08em 0 0 var(--red),.08em 0 0 var(--blue);animation:slice .18s steps(2) 1}
+@media(prefers-reduced-motion:reduce){.gl span{animation:none!important}}
+/* RIBBON from the author's own deck */
+.rib{display:flex;align-items:center;gap:16px;padding:0 16px;min-height:38px;margin-bottom:32px;background:var(--blue);color:#fff;font-style:italic;font-size:.875rem}
+.rib b{flex:1;height:1px;background:rgba(255,255,255,.7)}
+/* scroll room so the focus convergence can be seen */
+.next{min-height:80vh;display:grid;place-items:center;color:var(--mist);border-top:1px dashed var(--line)}
+</style>
+</head>
+<body>
+<section class="hero" id="top">
+<div class="wrap">
+<header class="bar">
+<div class="brand"><a class="name" href="#top">Ivan Ivochkin</a><span class="slogan">Design your success.</span></div>
+<nav class="nav">
+<span class="st"><i></i><span data-i="status"></span></span>
+<button class="lang gl" data-l="en" aria-pressed="true"><span>EN</span></button>
+<button class="lang gl" data-l="ru" aria-pressed="false"><span>RU</span></button>
+<a class="btn btn--line gl" href="mailto:ivochkin.i@gmail.com"><span data-i="contact"></span></a>
+</nav>
+</header>
+<main class="grid">
+<div class="frame">
+<div class="x" aria-hidden="true"></div>
+<div class="disc" aria-hidden="true"><div class="rr"></div><div class="rb"></div><div class="cd"></div><div class="hub"></div><div class="hole"></div></div>
+</div>
+<div>
+<h1><span class="l1" data-i="h1a"></span><span class="l2" data-i="h1b"></span><span class="l3" data-i="h1c"></span></h1>
+<p class="sub" data-i="sub"></p>
+<div class="tab"><span data-i="tab"></span><b></b></div>
+<dl>
+<dt data-i="role"></dt><dd data-i="roleV"></dd>
+<dt data-i="focus"></dt><dd data-i="focusV"></dd>
+<dt data-i="exp"></dt><dd data-i="expV"></dd>
+<dt data-i="loc"></dt><dd data-i="locV"></dd>
+</dl>
+<div class="cta">
+<a class="btn btn--solid gl" href="https://www.behance.net/ivochkin"><span data-i="behance"></span></a>
+<a class="btn btn--ghost gl" href="mailto:ivochkin.i@gmail.com"><span data-i="write"></span></a>
+</div>
+</div>
+</main>
+<div class="rib"><span data-i="ribL"></span><b></b><span data-i="ribR"></span></div>
+</div>
+</section>
+<section class="next"><p>Next section placeholder</p></section>
+<script>
+const N='\u00A0';
+const T={
+en:{status:'Open to projects',contact:'Contact',h1a:'Brand identity,',h1b:'brought into',h1c:'focus.',sub:'Identity systems, motion and AI-assisted visuals from a designer with 20+ years in agencies and in-house teams.',tab:'Profile',role:'Role',roleV:'Brand and identity designer',focus:'Focus',focusV:'Identity, motion, generative AI',exp:'Experience',expV:'20+ years',loc:'Location',locV:'Moscow',behance:'Open Behance',write:'Write me',ribL:'Brief in',ribR:'Focus out'},
+ru:{status:'Открыт к проектам',contact:'Контакты',h1a:'Айдентика бренда,',h1b:'собранная',h1c:'в'+N+'фокус.',sub:'Фирменные стили, моушн и'+N+'AI-визуал от дизайнера с'+N+'опытом 20+'+N+'лет в'+N+'агентствах и'+N+'в'+N+'штате.',tab:'Профиль',role:'Роль',roleV:'Бренд- и'+N+'айдентика-дизайнер',focus:'Фокус',focusV:'Айдентика, моушн, генеративный AI',exp:'Опыт',expV:'20+'+N+'лет',loc:'Город',locV:'Москва',behance:'Открыть Behance',write:'Написать мне',ribL:'Бриф на входе',ribR:'Фокус на выходе'}};
+const $=s=>document.querySelectorAll(s);
+function setLang(l){
+document.documentElement.lang=l;
+$('[data-i]').forEach(e=>{e.textContent=T[l][e.dataset.i]});
+$('.lang').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===l)));
+try{localStorage.setItem('lang',l)}catch(_){}}
+let saved;try{saved=localStorage.getItem('lang')}catch(_){}
+setLang(saved||((navigator.language||'en').toLowerCase().startsWith('ru')?'ru':'en'));
+$('.lang').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.l)));
+$('.x').forEach(x=>{x.innerHTML='<span>+</span>'.repeat(36)});
+const rm=matchMedia('(prefers-reduced-motion:reduce)');
+function focus(){const p=rm.matches?.85:Math.min(1,scrollY/(innerHeight*.8));document.documentElement.style.setProperty('--f',p.toFixed(3))}
+addEventListener('scroll',focus,{passive:true});focus();
+</script>
+</body>
+</html>
