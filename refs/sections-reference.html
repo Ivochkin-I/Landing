@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Sections reference v2: tabs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:SHRP,wght@0..100,300..600&family=Onest:wght@400;500&display=swap">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* Tokens and basics: same as hero-reference.html */
+:root{--bg:#0F1218;--bone:#F1EFE7;--mist:#A9AEC9;--line:#6E74A6;--red:#FF4A1C;--blue:#2B3BFF;--mag:#FF2FB9;--cy:#22D3EE}
+html,body{margin:0;background:var(--bg);color:var(--bone);color-scheme:dark}
+body{font:400 16px/1.5 Onest,system-ui,sans-serif}
+a,button{color:inherit;font:inherit;text-decoration:none}
+button{background:none;border:0;padding:0;cursor:pointer}
+.btn{min-height:48px;display:inline-flex;align-items:center;padding:0 26px;border-radius:6px}
+.btn--solid{background:var(--bone);color:var(--bg);font-weight:500}
+.btn--ghost{border:1px solid var(--bone)}
+/* Glitch (same rules as hero) */
+.gl span{display:inline-block}
+@keyframes jit{33%{transform:translate(-2px,0)}66%{transform:translate(2px,1px)}100%{transform:none}}
+@keyframes slice{0%{clip-path:inset(0 0 60% 0);transform:translateX(-4px)}50%{clip-path:inset(55% 0 0 0);transform:translateX(4px)}100%{clip-path:inset(0);transform:none}}
+@media(hover:hover){.gl:hover{box-shadow:-3px 0 0 var(--red),3px 0 0 var(--blue)}.gl:hover span{text-shadow:-.04em 0 0 var(--red),.04em 0 0 var(--blue);animation:jit .25s steps(3) 1}}
+.gl:focus-visible{outline:2px solid var(--bone);outline-offset:4px}
+.gl:active span{text-shadow:-.08em 0 0 var(--red),.08em 0 0 var(--blue);animation:slice .18s steps(2) 1}
+/* TAB BAR: sticky folder tabs + mini disc as scroll indicator. Content width only. */
+.tabs{display:none;position:sticky;top:0;z-index:5;background:var(--bg)}
+.js .tabs{display:block}
+.tabs>div{max-width:1280px;margin:0 auto;padding:12px clamp(16px,5vw,80px) 0;display:flex;align-items:flex-end;gap:4px;overflow-x:auto;scrollbar-width:none}
+.mini{width:36px;height:36px;flex:none;align-self:center;margin:0 12px 6px 0;border-radius:50%;background:radial-gradient(circle,var(--bg) 0 18%,transparent 19%),conic-gradient(from var(--rot,0deg),#2B3BFF,#22D3EE,#FFB31A,#FF4A1C,#FF2FB9,#6B2BFF,#2B3BFF);box-shadow:-2px 0 0 var(--red),2px 0 0 var(--blue)}
+[role=tab]{flex:none;min-height:44px;padding:0 22px;border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;color:var(--mist)}
+[role=tab][aria-selected=true]{color:var(--bone);background:linear-gradient(180deg,rgba(43,59,255,.22),transparent)}
+.tabs i{flex:1;min-width:16px;border-bottom:1px solid var(--line)}
+/* PANELS */
+.panel{max-width:1280px;margin:0 auto;padding:40px clamp(16px,5vw,80px) 0;min-height:70vh}
+.panel[hidden]{display:none}
+.tune{animation:fade .3s steps(3) 1}
+@keyframes fade{0%{opacity:.35}100%{opacity:1}}
+@keyframes retune{0%{text-shadow:-.08em 0 0 var(--red),.08em 0 0 var(--blue)}66%{text-shadow:-.03em 0 0 var(--red),.03em 0 0 var(--blue)}100%{text-shadow:none}}
+.tune .ghost span:first-child{animation:retune .3s steps(3) 1}
+@media(prefers-reduced-motion:reduce){.tune,.tune .ghost span:first-child,.gl span{animation:none!important}}
+/* Ghost title: outline word, last 30% filled with spectrum gradient. In flow (grid stack), not floating. */
+.ghost{display:grid;margin:0 0 28px;font:500 clamp(3rem,10vw,8.5rem)/.95 Geologica,Onest,sans-serif;font-variation-settings:"SHRP" 100;color:transparent;-webkit-text-stroke:1px var(--line)}
+.ghost span{grid-area:1/1}
+.ghost .fill{-webkit-text-stroke:0;background:linear-gradient(90deg,var(--red),var(--mag),var(--blue));-webkit-background-clip:text;background-clip:text;clip-path:inset(0 0 0 70%)}
+h3{margin:0 0 6px;font:500 1.25rem/1.25 Geologica,Onest,sans-serif;font-variation-settings:"SHRP" 100}
+p{margin:0}.mut{color:var(--mist)}
+/* PROCEDURAL COVERS: placeholders that already look finished. Real images replace --cv later. */
+.cv{--ov:linear-gradient(to top,rgba(15,18,24,.88),rgba(15,18,24,0) 65%);background:var(--ov),var(--cv)}
+.cv1{--cv:conic-gradient(from 200deg at 70% 40%,#2B3BFF,#FF2FB9,#FFB31A,#22D3EE,#2B3BFF)}
+.cv2{--cv:repeating-radial-gradient(circle at 80% 20%,#141a3a 0 14px,#2B3BFF 15px 16px)}
+.cv3{--cv:radial-gradient(circle,rgba(255,179,26,.9) 1.5px,transparent 2px) 0 0/10px 10px,#101420}
+.cv4{--cv:repeating-linear-gradient(90deg,rgba(34,211,238,.55) 0 2px,#0F1218 2px 14px)}
+.cv5{--cv:radial-gradient(circle at 30% 30%,#FF4A1C,transparent 55%),radial-gradient(circle at 75% 70%,#2B3BFF,transparent 55%),#0F1218}
+.cv6{--cv:conic-gradient(from 0deg at 50% 120%,#6B2BFF,#22D3EE,#6B2BFF)}
+/* WORK */
+.reel{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;aspect-ratio:16/9;padding:clamp(16px,3vw,32px);border-radius:10px;border:1px solid var(--line)}
+.reel b{font:500 clamp(1.35rem,2.6vw,2.125rem)/1.15 Geologica,Onest,sans-serif;font-variation-settings:"SHRP" 100}
+.play{width:0;height:0;border:14px solid transparent;border-left:24px solid var(--bone);border-right:0;margin-bottom:12px}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(168px,auto);gap:16px;margin-top:16px}
+.tile{display:flex;flex-direction:column;justify-content:flex-end;gap:2px;padding:20px;border:1px solid var(--line);border-radius:10px;transition:border-color .2s}
+.tile:hover{border-color:var(--bone)}
+.tile b{font:500 clamp(1.1rem,2vw,1.5rem)/1.2 Geologica,Onest,sans-serif;font-variation-settings:"SHRP" 100}
+.tag{align-self:flex-start;margin-bottom:auto;padding:4px 12px;border-radius:999px;background:var(--bone);color:var(--bg);font-size:.8125rem;font-weight:500}
+.t1{grid-column:span 7;grid-row:span 2}.t2,.t3{grid-column:span 5}.t4,.t5,.t6{grid-column:span 4}
+@media(max-width:720px){.bento{grid-template-columns:1fr}.tile{grid-column:auto!important;grid-row:auto!important;min-height:220px}}
+/* SPECTRUM */
+.facts,.spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px}
+.facts{margin-bottom:48px}
+.facts b{display:block;font:500 clamp(1.5rem,3vw,2.25rem)/1.1 Geologica,Onest,sans-serif;font-variation-settings:"SHRP" 100}
+.spec>div{border-top:2px solid var(--c);padding-top:16px}
+.tk{display:grid;grid-template-columns:140px 1fr;gap:12px 24px;margin:48px 0 0}
+.tk dt{color:var(--mist)}.tk dd{margin:0}
+/* PATH */
+.row{display:grid;grid-template-columns:140px 1fr;gap:8px 24px;padding:20px 0;border-top:1px solid rgba(110,116,166,.35)}
+.row i{color:var(--mist)}
+.ban{display:flex;flex-direction:column;justify-content:flex-end;gap:4px;aspect-ratio:3/1;min-height:160px;margin:20px 0;padding:24px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px}
+.ban b{font:500 clamp(1.35rem,2.6vw,2.125rem)/1.15 Geologica,Onest,sans-serif;font-variation-settings:"SHRP" 100}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+/* CONTACT */
+.slo{margin:0 0 12px;font:400 clamp(1.75rem,4vw,3rem)/1.1 Geologica,Onest,sans-serif;font-variation-settings:"SHRP" 100}
+.links{margin-top:32px;border-bottom:1px solid rgba(110,116,166,.35)}
+.lnk{display:flex;justify-content:space-between;gap:16px;align-items:center;min-height:56px;border-top:1px solid rgba(110,116,166,.35);padding:0 4px}
+.lnk span:first-child{color:var(--mist)}
+html[lang=en] [data-ru]{display:none}
+.foot{max-width:1280px;margin:clamp(48px,8vw,96px) auto 0;padding:16px clamp(16px,5vw,80px) 32px;color:var(--mist);font-size:.875rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 24px}
+</style>
+</head>
+<body>
+<div class="tabs"><div role="tablist" aria-label="Sections">
+<span class="mini" id="mini" aria-hidden="true"></span>
+<button role="tab" class="gl" id="tw" data-t="work" aria-controls="work"><span data-i="tabWork"></span></button>
+<button role="tab" class="gl" id="ts" data-t="spectrum" aria-controls="spectrum"><span data-i="tabSp"></span></button>
+<button role="tab" class="gl" id="tp" data-t="path" aria-controls="path"><span data-i="tabPath"></span></button>
+<button role="tab" class="gl" id="tc" data-t="contact" aria-controls="contact"><span data-i="tabCt"></span></button>
+<i></i></div></div>
+
+<section class="panel" id="work" role="tabpanel" aria-labelledby="tw">
+<h2 class="ghost"><span data-i="tabWork"></span><span class="fill" aria-hidden="true" data-i="tabWork"></span></h2>
+<a class="reel cv cv1" href="https://www.behance.net/ivochkin"><i class="play"></i><b data-i="reelT"></b><span class="mut" data-i="reelM"></span></a>
+<div class="bento">
+<a class="tile cv cv2 t1" href="https://www.behance.net/ivochkin"><span class="tag">Curator’s Pick</span><b data-i="tileT"></b></a>
+<a class="tile cv cv5 t2" href="https://www.behance.net/ivochkin"><span class="tag" data-i="tgMo"></span><b data-i="tileT"></b></a>
+<a class="tile cv cv3 t3" href="https://www.behance.net/ivochkin"><span class="tag" data-i="tgPk"></span><b data-i="tileT"></b></a>
+<a class="tile cv cv4 t4" href="https://www.behance.net/ivochkin"><span class="tag" data-i="tgId"></span><b data-i="tileT"></b></a>
+<a class="tile cv cv6 t5" href="https://www.behance.net/ivochkin"><span class="tag" data-i="tgAi"></span><b data-i="tileT"></b></a>
+<a class="tile cv cv1 t6" href="https://www.behance.net/ivochkin"><span class="tag" data-i="tgSm"></span><b data-i="tileT"></b></a>
+</div>
+</section>
+
+<section class="panel" id="spectrum" role="tabpanel" aria-labelledby="ts">
+<h2 class="ghost"><span data-i="tabSp"></span><span class="fill" aria-hidden="true" data-i="tabSp"></span></h2>
+<div class="facts">
+<div><b>20+</b><span class="mut" data-i="f1"></span></div>
+<div><b>Curator’s Pick</b><span class="mut" data-i="f2"></span></div>
+<div><b data-i="f3v"></b><span class="mut" data-i="f3"></span></div>
+<div><b>Motion + AI</b><span class="mut" data-i="f4"></span></div>
+</div>
+<div class="spec">
+<div style="--c:var(--red)"><h3 data-i="s1t"></h3><p class="mut" data-i="s1d"></p></div>
+<div style="--c:var(--blue)"><h3 data-i="s2t"></h3><p class="mut" data-i="s2d"></p></div>
+<div style="--c:var(--cy)"><h3 data-i="s3t"></h3><p class="mut" data-i="s3d"></p></div>
+<div style="--c:var(--mag)"><h3 data-i="s4t"></h3><p class="mut" data-i="s4d"></p></div>
+</div>
+<dl class="tk">
+<dt data-i="k1"></dt><dd>Photoshop, Illustrator, InDesign, Figma</dd>
+<dt data-i="k2"></dt><dd>After Effects</dd>
+<dt>3D</dt><dd data-i="k3"></dd>
+<dt>AI</dt><dd data-i="k4"></dd>
+</dl>
+</section>
+
+<section class="panel" id="path" role="tabpanel" aria-labelledby="tp">
+<h2 class="ghost"><span data-i="tabPath"></span><span class="fill" aria-hidden="true" data-i="tabPath"></span></h2>
+<div class="row"><i>2006–2013</i><div><h3 data-i="r1t"></h3><p class="mut" data-i="r1d"></p></div></div>
+<div class="row"><i>2013–2014</i><div><h3 data-i="r2t"></h3><p class="mut" data-i="r2d"></p></div></div>
+<div class="row"><i>2014–2019</i><div><h3 data-i="r3t"></h3><p class="mut" data-i="r3d"></p></div></div>
+<div class="row"><i>2016–2017</i><div><h3 data-i="r4t"></h3><p class="mut" data-i="r4d"></p></div></div>
+<a class="ban cv cv3" href="https://www.behance.net/ivochkin"><b data-i="b1"></b><span class="mut" data-i="banM"></span></a>
+<div class="row"><i>2018–2023</i><div><h3 data-i="r5t"></h3><p class="mut" data-i="r5d"></p></div></div>
+<a class="ban cv cv2" href="https://www.behance.net/ivochkin"><b data-i="b2"></b><span class="mut" data-i="banM"></span></a>
+<div class="row"><i data-i="r6y"></i><div><h3 data-i="r6t"></h3><p class="mut" data-i="r6d"></p></div></div>
+<a class="ban cv cv5" href="https://www.behance.net/ivochkin"><b data-i="b3"></b><span class="mut" data-i="banM"></span></a>
+<div class="row"><i data-i="r7y"></i><div><h3 data-i="r7t"></h3><p class="mut" data-i="r7d"></p></div></div>
+<a class="ban cv cv6" href="https://vk.com/krass_ivo"><b data-i="b4"></b><span class="mut">vk.com/krass_ivo</span></a>
+</section>
+
+<section class="panel" id="contact" role="tabpanel" aria-labelledby="tc">
+<h2 class="ghost"><span data-i="tabCt"></span><span class="fill" aria-hidden="true" data-i="tabCt"></span></h2>
+<p class="slo">Design your success.</p>
+<p class="mut" data-i="ctP"></p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
+<a class="btn btn--solid gl" href="mailto:ivochkin.i@gmail.com"><span data-i="write"></span></a>
+<a class="btn btn--ghost gl" href="https://www.behance.net/ivochkin"><span data-i="behance"></span></a>
+</div>
+<div class="links">
+<a class="lnk gl" href="mailto:ivochkin.i@gmail.com"><span data-i="lEm"></span><span>ivochkin.i@gmail.com</span></a>
+<a class="lnk gl" href="https://t.me/ivan_ivo"><span>Telegram</span><span>@ivan_ivo</span></a>
+<a class="lnk gl" href="https://www.behance.net/ivochkin"><span>Behance</span><span>behance.net/ivochkin</span></a>
+<a class="lnk gl" href="https://vk.com/krass_ivo"><span data-i="lAi"></span><span>vk.com/krass_ivo</span></a>
+<a class="lnk gl" data-ru href="https://vk.com/ivochkin_i"><span>VK</span><span>@ivochkin_i</span></a>
+<a class="lnk gl" data-ru href="https://tula.hh.ru/resume/9abaee08ff029a0f170039ed1f554361306139"><span>Резюме</span><span>hh.ru</span></a>
+<a class="lnk gl" data-ru href="https://disk.yandex.ru/d/djfjJhsjhh4KAw"><span>Портфолио PDF</span><span>disk.yandex.ru</span></a>
+</div>
+</section>
+<footer class="foot"><span data-i="colo"></span><span>© 2026 Ivan Ivochkin</span></footer>
+
+<script>
+/* Merge ADD into the T dictionary in js/main.js. Keys write and behance already exist there. */
+const N='\u00A0';
+const ADD={
+en:{tabWork:'Work',tabSp:'Spectrum',tabPath:'Path',tabCt:'Contact',reelT:'Showreel',reelM:'Motion and brand work, placeholder for a video',tileT:'Project title',tgMo:'Motion',tgPk:'Packaging',tgId:'Identity',tgAi:'AI',tgSm:'Social',f1:'years in design',f2:'on Behance',f3v:'Full cycle',f3:'from concept to launch',f4:'in one pipeline',s1t:'Identity',s1d:'Logos, brand systems and key visuals, with packaging as part of the system.',s2t:'Motion',s2d:'Animated banners, social content and short promo video.',s3t:'Generative AI',s3d:'Stable Diffusion, Midjourney and Kling in the pipeline; ComfyUI in progress.',s4t:'Brand and campaigns',s4d:'Brand platforms, media planning, ad creatives and analytics.',k1:'Design',k2:'Motion',k3:'3ds Max (basics)',k4:'Stable Diffusion, Midjourney, Kling, ComfyUI (learning)',r1t:'Advertising agency and food producer',r1d:'Video, identity, promo apparel, own brands, trade-show design.',r2t:'Production marketing',r2d:'Launching a product line from scratch.',r3t:'Art director, own practice',r3d:'Branding and media planning.',r4t:'Retail chain campaigns',r4d:'Campaigns for a federal chain across 27 regions.',r5t:'Exhibition and environmental graphics',r5d:'Wayfinding, stands, object photography, print and installation supervision.',r6y:'2023 – now',r6t:'Real-estate group',r6d:'Brand platforms, ad creatives, art direction.',r7y:'2020 – now',r7t:'Generative AI works',r7d:'Personal AI projects, made for fun.',b1:'Packaging and POS for federal retail',b2:'Exhibition projects: from layout to installation',b3:'Brand platforms and campaigns',b4:'AI prints: works for fun',banM:'Case on Behance',ctP:'Have a brand or a visual problem? Write me.',write:'Write me',behance:'Open Behance',lEm:'Email',lAi:'AI works',colo:'Layout: Ivan Ivochkin · Type: Geologica, Onest · Built with Qwen Coder'},
+ru:{tabWork:'Работы',tabSp:'Спектр',tabPath:'Путь',tabCt:'Контакты',reelT:'Шоурил',reelM:'Моушн и бренд-работы, место под ролик',tileT:'Название проекта',tgMo:'Моушн',tgPk:'Упаковка',tgId:'Айдентика',tgAi:'AI',tgSm:'Соцсети',f1:'лет в'+N+'дизайне',f2:'на Behance',f3v:'Полный цикл',f3:'от идеи до запуска',f4:'в'+N+'одном процессе',s1t:'Айдентика',s1d:'Логотипы, фирменные стили и'+N+'ключевые визуалы, упаковка как часть системы.',s2t:'Моушн',s2d:'Анимированные баннеры, контент для'+N+'соцсетей и'+N+'короткие промо-ролики.',s3t:'Генеративный AI',s3d:'Stable Diffusion, Midjourney и'+N+'Kling в'+N+'процессе; ComfyUI осваиваю.',s4t:'Бренд и'+N+'кампании',s4d:'Brand-платформы, медиапланирование, рекламные креативы и'+N+'аналитика.',k1:'Дизайн',k2:'Моушн',k3:'3ds Max (базово)',k4:'Stable Diffusion, Midjourney, Kling, ComfyUI (осваиваю)',r1t:'Рекламное агентство и'+N+'производитель продуктов',r1d:'Видео, фирменный стиль, промоодежда, собственные ТМ, оформление выставок.',r2t:'Производственный маркетинг',r2d:'Запуск продуктовой линейки с'+N+'нуля.',r3t:'Арт-директор, собственная практика',r3d:'Брендинг и'+N+'медиапланирование.',r4t:'Кампании розничной сети',r4d:'Кампании федеральной сети в'+N+'27'+N+'регионах.',r5t:'Выставочная и'+N+'средовая графика',r5d:'Навигация, стенды, предметная съёмка, контроль печати и'+N+'монтажа.',r6y:'2023 — н.'+N+'в.',r6t:'Девелоперская группа',r6d:'Brand-платформы, рекламные креативы, арт-дирекшн.',r7y:'2020 — н.'+N+'в.',r7t:'Работы с'+N+'нейросетями',r7d:'Личные AI-проекты, для души.',b1:'Упаковка и'+N+'POS для федеральной розницы',b2:'Выставочные проекты: от макета до монтажа',b3:'Бренд-платформы и'+N+'кампании',b4:'Нейротираж: работы для души',banM:'Кейс на'+N+'Behance',ctP:'Есть бренд или визуальная задача? Напишите мне.',write:'Написать мне',behance:'Открыть Behance',lEm:'Почта',lAi:'AI-работы',colo:'Макет: Иван Ивочкин · Шрифты: Geologica, Onest · Сборка: Qwen Coder'}};
+const L=(navigator.language||'en').toLowerCase().startsWith('ru')?'ru':'en';
+document.documentElement.lang=L;
+document.querySelectorAll('[data-i]').forEach(e=>{const v=ADD[L][e.dataset.i];if(v)e.textContent=v});
+/* Tabs: ARIA, arrows, hash links, retune on switch. Without JS all panels stay visible. */
+const tabs=[...document.querySelectorAll('[role=tab]')],mini=document.getElementById('mini');
+function show(id,push){tabs.forEach(t=>{const on=t.dataset.t===id,p=document.getElementById(t.getAttribute('aria-controls'));t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;p.hidden=!on;if(on){p.classList.remove('tune');void p.offsetWidth;p.classList.add('tune')}});if(push){try{history.replaceState(null,'','#'+id)}catch(_){}}}
+tabs.forEach((t,i)=>{t.onclick=()=>show(t.dataset.t,1);t.onkeydown=e=>{const k={ArrowRight:1,ArrowLeft:-1}[e.key];if(k){const n=tabs[(i+k+tabs.length)%tabs.length];n.focus();show(n.dataset.t,1)}}});
+const h=location.hash.slice(1);show(tabs.some(t=>t.dataset.t===h)?h:'work');
+addEventListener('hashchange',()=>{const x=location.hash.slice(1);if(tabs.some(t=>t.dataset.t===x))show(x)});
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)addEventListener('scroll',()=>mini.style.setProperty('--rot',(scrollY*.15)+'deg'),{passive:true});
+</script>
+</body>
+</html>
